@@ -86,7 +86,7 @@ Voilà! Your files now sport the correct MIME types **and** remain protected fro
 * **No nested directories**
   * This is by design—if you need subfolders, grab a real static server.
 * **Race conditions**
-  * We do a quick check→stat→stream; a sneaky symlink swap is *theoretically* possible, but hey, your folder public lives behind SSH+VPN+2FA, right?
+  * We do a quick check→stat→stream; a sneaky symlink swap is *theoretically* possible, but hey, your shared folder lives behind SSH+VPN+2FA, right?
 * **No caching or Range support**
   * If you need byte-ranges, ETags, or fancy cache headers—time to graduate to something more full-featured.
 
