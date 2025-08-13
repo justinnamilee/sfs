@@ -32,14 +32,14 @@ Zero dependencies. Zero ceremony. All the power of Node’s core modules, with n
 
 ## ⚙️ ENV
 
-| Variable    | Default       | What it does                                     |
-| ----------- | ------------- | ------------------------------------------------ |
-| `IP`        | `0.0.0.0`     | The address to listen on                         |
-| `PORT`      | `3001`        | The port to listen on                            |
-| `DIRECTORY` | `$PWD/public` | Folder to serve (must exist & be a dir)          |
-| `ALIVE`     | `5`           | **Keep-alive** timeout in **seconds**            |
-| `TIMEOUT`   | `1`           | **Headers** timeout in **minutes**               |
-| `DEFAULT`   | `index.html`  | A file in `DIRECTORY` to serve for 404 and root. |
+| Variable    | Default       | What it does                                    |
+| ----------- | ------------- | ----------------------------------------------- |
+| `IP`        | `0.0.0.0`     | The address to listen on                        |
+| `PORT`      | `3001`        | The port to listen on                           |
+| `DIRECTORY` | `$PWD/public` | Folder to serve (must exist & be a dir)         |
+| `ALIVE`     | `5`           | **Keep-alive** timeout in **seconds**           |
+| `TIMEOUT`   | `1`           | **Headers** timeout in **minutes**              |
+| `DEFAULT`   | `index.html`  | A file in `DIRECTORY` to serve for 404 and root |
 
 ---
 
