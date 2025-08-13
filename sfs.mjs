@@ -1,11 +1,18 @@
 import { createServer } from 'http';
-import { existsSync, statSync, createReadStream } from 'fs';
+import { existsSync, statSync, createReadStream, readFileSync } from 'fs';
 import { resolve, join, basename } from 'path';
 import { URL } from 'url';
 
 const directory = resolve(process.env.DIRECTORY || 'public');
 const alive = (process.env.ALIVE || 5) * 1000;
 const timeout = (process.env.TIMEOUT || 1) * 60 * 1000;
+const defaultPath = join(directory, process.env.DEFAULT || 'index.html');
+
+let defaultData;
+
+if (existsSync(defaultPath) && statSync(defaultPath).isFile()) {
+  defaultData = readFileSync(defaultPath);
+}
 
 if (existsSync(directory) && statSync(directory).isDirectory()) {
   const server = createServer((req, res) => {
@@ -23,6 +30,7 @@ if (existsSync(directory) && statSync(directory).isDirectory()) {
 
       if (typeof file !== 'undefined') {
         let filePath = join(directory, file);
+        let fileBad = false;
 
         if (existsSync(filePath)) {
           const stat = statSync(filePath);
@@ -64,11 +72,27 @@ if (existsSync(directory) && statSync(directory).isDirectory()) {
             }
           } else {
             res.statusCode = 400;
-            res.end();
+
+            if (typeof (defaultData) !== 'undefined') {
+              fileBad = true;
+            } else {
+              res.end();
+            }
           }
         } else {
           res.statusCode = 404;
-          res.end();
+
+          if (typeof (defaultData) !== 'undefined') {
+            fileBad = true;
+          } else {
+            res.end();
+          }
+        }
+
+        if (fileBad) {
+          res.setHeader('Content-Type', 'text/html; charset=utf-8');
+          res.setHeader('Cache-Control', 'public, max-age=90');
+          res.end(defaultData);
         }
       }
     } else {
