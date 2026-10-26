@@ -46,16 +46,16 @@ Zero dependencies. Zero ceremony. All the power of Node’s core modules, with n
 ## 🚀 Quickstart
 
 ```bash
-# clone or drop server.mjs into your project
+# clone or drop sfs.mjs into your project
 
 # defaults: serve ./public on 0.0.0.0:3001
-node server.mjs
+node sfs.mjs
 
 # override dir & port:
-DIRECTORY=../static_files PORT=8080 node server.mjs
+DIRECTORY=../static_files PORT=8080 node sfs.mjs
 
 # tweak timeouts (in seconds/minutes):
-ALIVE=2 TIMEOUT=5 node server.mjs
+ALIVE=2 TIMEOUT=5 node sfs.mjs
 ```
 
 ---
